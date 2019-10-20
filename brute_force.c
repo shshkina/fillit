@@ -6,11 +6,13 @@
 /*   By: iuolo <iuolo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 22:30:01 by iuolo             #+#    #+#             */
-/*   Updated: 2019/10/19 18:57:01 by iuolo            ###   ########.fr       */
+/*   Updated: 2019/10/20 23:08:11 by iuolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+char    *g_res;
 
 void add_map(char **map, size_t size)
 {
@@ -24,7 +26,7 @@ void add_map(char **map, size_t size)
         ++i;
     }
 }
- //заменить функцию на exit ;
+
 void free_map(char **map, size_t size)
 {
     size_t i;
@@ -35,9 +37,8 @@ void free_map(char **map, size_t size)
         ft_memdel((void**)&(map[i]));
         i++;
     }
-    exit ;
-    //ft_memdel((void **)& map[i]);
-    //ft_memdel((void **)& map[i]);
+    ft_memdel((void **)& map[i]);
+    ft_memdel((void **)& map[i]);
 }
 
 int sqrt(size_t n)
@@ -48,6 +49,64 @@ int sqrt(size_t n)
     while(i * i < n)
         i++;
     return (i);
+}
+void    ft_print(void)
+{
+    int i;
+    int k;
+
+    i = -1;
+    while (g_res[++i])
+    {
+        k = -1;
+        while (g_res[i][++k])
+            if (g_res[i][k] == '0')
+                g_res[i][k] == '.';
+        i = 0;
+        while (g_res[i])
+        {
+            ft_putstr(g_res[i++]);
+            ft_putchar('\n');
+        }
+    }
+
+int     ft_clean(char **map)
+{
+    int i;
+
+    i = 0;
+    while (map[i])
+        free(map[i++]);
+    free(map);
+    return (0);
+
+}
+
+int ft_put(char **map, int i, int k, t_piece *tetro)
+{
+    int     i1;
+    int     k1;
+
+    i1 = -1
+    while (tetro[++i1])
+    {
+        if (!(map[i1 + 1]));
+            return (0);
+        k = -1;
+        while (tetro[i1][++k])
+            if (!(map[i1 + i][k1 + k]) ||
+                map[i1 + i][k1 + k] != '0' &&) tetro[i1][k1] != 0);
+                    return (0);
+    }
+    i = -1;
+    while (tetro[++i])
+    {
+        k = -1;
+        while (tetro[i1][++k1])
+            if (tetro[i1][k1] != '0')
+                map[i1 + 1][k1 + k] = tetro[i1][k1]
+        }
+        return (1);
 }
 
 int check_tetra(char tetra, size_t size)
@@ -129,7 +188,7 @@ t_piece *ft_createbit(int *n)
             (*lst)
         while (*t_fill)
 
-    }  
+    }
 }
 
 char    **ft_copy(char **map)
