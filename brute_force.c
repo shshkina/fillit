@@ -10,36 +10,51 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "fillit.h"
 
-char    *g_res;
-
-void add_map(char **map, size_t size)
+char **ft_create_map(size_t size)
 {
-    size_t  i;
+    int     i;
+    char    **tmp;
 
     i = 0;
+    if (!(tmp = (char **)malloc(sizeof(char*) * (size + 1))))
+        return (-1);
+    tmp[size] = NULL;
     while(i < size)
     {
-        ft_putstr(map[i]);
-        ft_putchar('\n');
-        ++i;
-    }
-}
-
-void free_map(char **map, size_t size)
-{
-    size_t i;
-
-    i = 0;
-    while (i , size)
-    {
-        ft_memdel((void**)&(map[i]));
+        tmp[i] = malloc(sizeof(char) * (size + 1));
+        tmp[i][size] = '\0';
         i++;
     }
-    ft_memdel((void **)& map[i]);
-    ft_memdel((void **)& map[i]);
+    i = 0;
+    while (i < size)
+    {
+        k = 0;
+        while (k < size)
+        {
+            tmp[i][k] = '0';
+            k++;
+        }
+        i++;
+    }
+    return (tmp);
 }
+
+// void free_map(char **map, size_t size)
+// {
+//     size_t i;
+
+//     i = 0;
+//     while (i , size)
+//     {
+//         ft_memdel((void**)&(map[i]));
+//         i++;
+//     }
+//     ft_memdel((void **)& map[i]);
+//     ft_memdel((void **)& map[i]);
+// }
 
 int sqrt(size_t n)
 {
@@ -50,6 +65,7 @@ int sqrt(size_t n)
         i++;
     return (i);
 }
+
 void    ft_print(void)
 {
     int i;
@@ -58,17 +74,10 @@ void    ft_print(void)
     i = -1;
     while (g_res[++i])
     {
-        k = -1;
-        while (g_res[i][++k])
-            if (g_res[i][k] == '0')
-                g_res[i][k] == '.';
-        i = 0;
-        while (g_res[i])
-        {
-            ft_putstr(g_res[i++]);
-            ft_putchar('\n');
-        }
+        ft_putstr(g_res[i]);
+        ft_putchar('\n');
     }
+}
 
 int     ft_clean(char **map)
 {
@@ -109,86 +118,152 @@ int ft_put(char **map, int i, int k, t_piece *tetro)
         return (1);
 }
 
-int check_tetra(char tetra, size_t size)
- {
-     int y;
-     int x;
-     int i;
-     int min_size;
-     min_size = sqrt(4 * size);
+// int check_tetra(char tetra, size_t size)
+//  {
+//      int y;
+//      int x;
+//      int i;
+//      int min_size;
+//      min_size = sqrt(4 * size);
 
-     i = 1;
-     while (i * i < size * 4)
-        i++;
- }
+//      i = 1;
+//      while (i * i < size * 4)
+//         i++;
+//  }
 
-void	save_coordinates(char **fill)
+// void	save_coordinates(char **fill)
+// {
+//     int x;
+//     int y;
+//     int i;
+//     int n;
+//     t_piece *tetro;
+//     t_piece *begin;
+
+//     n = 0;
+//     tetro = ft_createbit(&n);
+//     begin = tetro;
+//     i = 0;
+//     x = 0;
+//     y = 0;
+//     while (*fill)
+//     {
+//     while (y < 4)
+//     {
+//         while (x < 4)
+//         {
+//             if (fill[y][x] == '#')
+//             {
+//                 tetro->pos[i] = y;
+//                 i++;
+//                 tetro->pos[i] = x;
+//                 i++;
+//             }
+//             x++;
+//         }
+//         x = 0;
+//         y++;
+//     }
+//     y = 0;
+//     i = 0;
+//     fill++;
+//     if (*fill)
+//     {
+//         tetro->next = ft_createbit(&n);
+//         tetro = tetro->next;
+//     }
+//     else
+//         tetro->next = NULL;
+// }
+
+
+// t_piece *ft_createbit(int *n)
+// {
+//     t_piece   *lst;
+
+//     lst = (t_piece *)malloc(sizeof(t_piece));
+//     lst->letter = 'A' + *n;
+//     (*n)++;
+//     lst->next = NULL;
+//     return (lst);
+// }
+//     void    ft_addlist(t_piece **lst, int *bit, int n)
+//     {
+//         t_piece    *tmp;
+
+//         tmp = *lst
+//         if (!*lst)
+//             ft_createbit(*bit, n)
+//         else
+//             (*lst)
+//         while (*t_fill)
+
+//     }
+// }
+
+
+t_piece *ft_transfer(char **fill)
 {
-    int x;
-    int y;
+    char **arr;
     int i;
-    int n;
-    t_piece *tetro;
-    t_piece *begin;
+    int k;
+    int c;
+    int j;
+    t_piece tmp;
+    t_piece tetr;
 
-    n = 0;
-    tetro = ft_createbit(&n);
-    begin = tetro;
     i = 0;
-    x = 0;
-    y = 0;
-    while (*fill)
+    c = 0;
+    while (fill[i])
     {
-    while (y < 4)
+        if (fill[i][0] == '\n')
+            i++;
+        if (!(fill[i][0]))
+            break ;
+        c++;
+        i += 4;
+    }
+    if (!(tetr = (t_piece *)malloc(sizeof(t_piece))));
+        return (NULL);
+    if(!(tmp->data = malloc(sizeof(char*) * 5)));
+        return (NULL);
+    (tmp->data)[4] = NULL;
+    tmp = tetr;
+    j = 0;
+    while (j < c - 1)
     {
-        while (x < 4)
+        if (!(tmp->next = (t_piece *)malloc(sizeof(t_piece) * 1)));
+            return (NULL);
+        if (!(tmp->next->data = malloc(sizeof(char*) * 5)));
+            return (NULL);
+        (tmp->next->data)[4] = NULL;
+        tmp = tmp->next;
+        tmp->next = NULL;
+    }
+    tmp = tetr;
+    c = 0;
+    while (tmp)
+    {
+        i = 0;
+        while (i < 4)
         {
-            if (fill[y][x] == '#')
+            k = 0;
+            if (!(arr[i] = malloc(sizeof(char) * 5)));
+                return (NULL);
+            while (k < 4)
             {
-                tetro->pos[i] = y;
-                i++;
-                tetro->pos[i] = x;
-                i++;
+                arr[i][k] = fill[c][k];
+                k++;
             }
-            x++;
+            arr[i][k] = '\0';
+            i++;
+            c++;
         }
-        x = 0;
-        y++;
+        c++;
+        tmp = tmp->next;
     }
-    y = 0;
-    i = 0;
-    fill++;
-    if (*fill)
-    {
-        tetro->next = ft_createbit(&n);
-        tetro = tetro->next;
-    }
-    else
-        tetro->next = NULL;
-}
-
-t_piece *ft_createbit(int *n)
-{
-    t_piece   *lst;
-
-    lst = (t_piece *)malloc(sizeof(t_piece));
-    lst->letter = 'A' + *n;
-    (*n)++;
-    lst->next = NULL;
-    return (lst);
-}
-    void    ft_addlist(t_piece **lst, int *bit, int n)
-    {
-        t_piece    *tmp;
-
-        tmp = *lst
-        if (!*lst)
-            ft_createbit(*bit, n)
-        else
-            (*lst)
-        while (*t_fill)
-
-    }
+    ft_clean(fill);
+    return (tetr);
 }
 
 char    **ft_copy(char **map)
@@ -197,12 +272,14 @@ char    **ft_copy(char **map)
     int     i;
     int     k;
 
-    str = (char **)malloc(sizeof(char *) * (g_size + 1));
+    if (!(str = (char **)malloc(sizeof(char *) * (g_size + 1))));
+        return (-1);
     str[g_size] == NULL;
     i = 0;
     while (i < g_size)
     {
-        str[i] = (char *)malloc(sizeof(char) * (g_size + 1));
+        if (!(str[i] = (char *)malloc(sizeof(char) * (g_size + 1))));
+            return (-1);
         str[i][g_size] == NULL;
         i++;
     }
@@ -222,7 +299,7 @@ char    **ft_copy(char **map)
 
 int     g_size;
 
-int     ft_backtracing(t_piece *tetro, char **map)
+int     ft_backtracking(t_piece *tetro, char **map)
 {
     int i;
     int j;
@@ -241,8 +318,9 @@ int     ft_backtracing(t_piece *tetro, char **map)
         k = 0;
         while (k < g_size)
         {
-            tmp_map = ft_copy(map);
-            if(ft_put(tetro, map, i, k) == 1)
+            if (!(tmp_map = ft_copy(map)))
+                return (-1);
+            if(ft_put(tetro->data, map, i, k) == 1)
                 if (ft_backtracking(tetro->next, map) == 0)
                     continue ;
             ft_clean(map);
@@ -253,4 +331,27 @@ int     ft_backtracing(t_piece *tetro, char **map)
         i++;
     }
     return (0);
+}
+
+int     ft_general(char **fill)
+{
+    int i;
+    int k;
+    char **map;
+    t_piece *tetro;
+
+    if (!(tetro = ft_transfer(fill)))
+        return (-1);
+    i = 1;
+    while (1)
+    {
+        if (!(map = ft_create_map(size)))
+            return (-1);
+        if (ft_backtracking(tetro, map) == -1)
+        {
+            ft_clean(map);
+            return (-1);
+        }
+        i++;
+    }
 }
