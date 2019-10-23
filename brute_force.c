@@ -6,21 +6,24 @@
 /*   By: iuolo <iuolo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 22:30:01 by iuolo             #+#    #+#             */
-/*   Updated: 2019/10/20 23:08:11 by iuolo            ###   ########.fr       */
+/*   Updated: 2019/10/23 20:06:30 by iuolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "fillit.h"
+
+char        **g_res;
+int         g_size;
 
 char **ft_create_map(size_t size)
 {
     int     i;
+    int     k;
     char    **tmp;
 
     i = 0;
     if (!(tmp = (char **)malloc(sizeof(char*) * (size + 1))))
-        return (-1);
+        return (NULL);
     tmp[size] = NULL;
     while(i < size)
     {
@@ -42,21 +45,7 @@ char **ft_create_map(size_t size)
     return (tmp);
 }
 
-// void free_map(char **map, size_t size)
-// {
-//     size_t i;
-
-//     i = 0;
-//     while (i , size)
-//     {
-//         ft_memdel((void**)&(map[i]));
-//         i++;
-//     }
-//     ft_memdel((void **)& map[i]);
-//     ft_memdel((void **)& map[i]);
-// }
-
-int sqrt(size_t n)
+int ft_sqrt(size_t n)
 {
     size_t i;
 
@@ -66,7 +55,7 @@ int sqrt(size_t n)
     return (i);
 }
 
-void    ft_print(void)
+void    ft_printmap(char **map)
 {
     int i;
     int k;
@@ -91,116 +80,32 @@ int     ft_clean(char **map)
 
 }
 
-int ft_put(char **map, int i, int k, t_piece *tetro)
+int ft_put(char **arr, char **map, int i, int k)
 {
     int     i1;
     int     k1;
 
-    i1 = -1
-    while (tetro[++i1])
+    i1 = -1;
+    while (arr[++i1])
     {
-        if (!(map[i1 + 1]));
+        if (!(map[i1 + 1]))
             return (0);
         k = -1;
-        while (tetro[i1][++k])
+        while (arr[i1][++k1])
             if (!(map[i1 + i][k1 + k]) ||
-                map[i1 + i][k1 + k] != '0' &&) tetro[i1][k1] != 0);
+                (map[i1 + i][k1 + k] != '0' && arr[i1][k1] != 0))
                     return (0);
     }
     i = -1;
-    while (tetro[++i])
+    while (arr[++i])
     {
         k = -1;
-        while (tetro[i1][++k1])
-            if (tetro[i1][k1] != '0')
-                map[i1 + 1][k1 + k] = tetro[i1][k1]
-        }
-        return (1);
+        while (arr[i1][++k1])
+            if (arr[i1][k1] != '0')
+                map[i1 + 1][k1 + k] = arr[i1][k1];
+    }
+    return (1);
 }
-
-// int check_tetra(char tetra, size_t size)
-//  {
-//      int y;
-//      int x;
-//      int i;
-//      int min_size;
-//      min_size = sqrt(4 * size);
-
-//      i = 1;
-//      while (i * i < size * 4)
-//         i++;
-//  }
-
-// void	save_coordinates(char **fill)
-// {
-//     int x;
-//     int y;
-//     int i;
-//     int n;
-//     t_piece *tetro;
-//     t_piece *begin;
-
-//     n = 0;
-//     tetro = ft_createbit(&n);
-//     begin = tetro;
-//     i = 0;
-//     x = 0;
-//     y = 0;
-//     while (*fill)
-//     {
-//     while (y < 4)
-//     {
-//         while (x < 4)
-//         {
-//             if (fill[y][x] == '#')
-//             {
-//                 tetro->pos[i] = y;
-//                 i++;
-//                 tetro->pos[i] = x;
-//                 i++;
-//             }
-//             x++;
-//         }
-//         x = 0;
-//         y++;
-//     }
-//     y = 0;
-//     i = 0;
-//     fill++;
-//     if (*fill)
-//     {
-//         tetro->next = ft_createbit(&n);
-//         tetro = tetro->next;
-//     }
-//     else
-//         tetro->next = NULL;
-// }
-
-
-// t_piece *ft_createbit(int *n)
-// {
-//     t_piece   *lst;
-
-//     lst = (t_piece *)malloc(sizeof(t_piece));
-//     lst->letter = 'A' + *n;
-//     (*n)++;
-//     lst->next = NULL;
-//     return (lst);
-// }
-//     void    ft_addlist(t_piece **lst, int *bit, int n)
-//     {
-//         t_piece    *tmp;
-
-//         tmp = *lst
-//         if (!*lst)
-//             ft_createbit(*bit, n)
-//         else
-//             (*lst)
-//         while (*t_fill)
-
-//     }
-// }
-
 
 t_piece *ft_transfer(char **fill)
 {
@@ -209,8 +114,8 @@ t_piece *ft_transfer(char **fill)
     int k;
     int c;
     int j;
-    t_piece tmp;
-    t_piece tetr;
+    t_piece *tmp;
+    t_piece *tetr;
 
     i = 0;
     c = 0;
@@ -223,18 +128,18 @@ t_piece *ft_transfer(char **fill)
         c++;
         i += 4;
     }
-    if (!(tetr = (t_piece *)malloc(sizeof(t_piece))));
+    if (!(tetr = (t_piece*)malloc(sizeof(t_piece))))
         return (NULL);
-    if(!(tmp->data = malloc(sizeof(char*) * 5)));
+    if(!(tmp->data = malloc(sizeof(char*) * 5)))
         return (NULL);
     (tmp->data)[4] = NULL;
     tmp = tetr;
     j = 0;
     while (j < c - 1)
     {
-        if (!(tmp->next = (t_piece *)malloc(sizeof(t_piece) * 1)));
+        if (!(tmp->next = (t_piece *)malloc(sizeof(t_piece) * 1)))
             return (NULL);
-        if (!(tmp->next->data = malloc(sizeof(char*) * 5)));
+        if (!(tmp->next->data = malloc(sizeof(char*) * 5)))
             return (NULL);
         (tmp->next->data)[4] = NULL;
         tmp = tmp->next;
@@ -248,12 +153,12 @@ t_piece *ft_transfer(char **fill)
         while (i < 4)
         {
             k = 0;
-            if (!(arr[i] = malloc(sizeof(char) * 5)));
+            if (!(arr[i] = malloc(sizeof(char) * 5)))
                 return (NULL);
             while (k < 4)
             {
                 arr[i][k] = fill[c][k];
-                k++;
+                   k++;
             }
             arr[i][k] = '\0';
             i++;
@@ -272,15 +177,15 @@ char    **ft_copy(char **map)
     int     i;
     int     k;
 
-    if (!(str = (char **)malloc(sizeof(char *) * (g_size + 1))));
-        return (-1);
-    str[g_size] == NULL;
+    if (!(str = (char **)malloc(sizeof(char *) * (g_size + 1))))
+        return (NULL);
+    str[g_size] = NULL;
     i = 0;
     while (i < g_size)
     {
-        if (!(str[i] = (char *)malloc(sizeof(char) * (g_size + 1))));
-            return (-1);
-        str[i][g_size] == NULL;
+        if (!(str[i] = (char *)malloc(sizeof(char) * (g_size + 1))))
+            return (NULL);
+        str[i][g_size] = 0;
         i++;
     }
     i = 0;
@@ -297,8 +202,6 @@ char    **ft_copy(char **map)
     return (str);
 }
 
-int     g_size;
-
 int     ft_backtracking(t_piece *tetro, char **map)
 {
     int i;
@@ -307,7 +210,7 @@ int     ft_backtracking(t_piece *tetro, char **map)
 
     if(!(tetro))
     {
-        ft_print(map);
+        ft_printmap(map);
         exit (0);
     }
     i = 0;
@@ -333,7 +236,7 @@ int     ft_backtracking(t_piece *tetro, char **map)
     return (0);
 }
 
-int     ft_general(char **fill)
+int     ft_main(char **fill, size_t size)
 {
     int i;
     int k;
