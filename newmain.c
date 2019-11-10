@@ -6,7 +6,7 @@
 /*   By: iuolo <iuolo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:08:50 by sbrynn            #+#    #+#             */
-/*   Updated: 2019/10/25 19:37:16 by iuolo            ###   ########.fr       */
+/*   Updated: 2019/11/08 01:49:57 by iuolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int		main(int ac, char **av)
 	int		i;
 
 	if (ac == 2)
-	{
+	{		
 		fill = ft_memalloc(sizeof(char*) * 26);
 		fd = open(av[1], O_RDONLY);
 		if (!readit(fd, &fill, &i))
@@ -94,7 +94,7 @@ int		main(int ac, char **av)
 			return (0);
 		}
 		//ft_print(fill);
-		ft_main(fill);
+		ft_solver(fill);
 		cleanit(&fill, i);
 	}
 	else
