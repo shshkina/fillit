@@ -6,7 +6,7 @@
 /*   By: iuolo <iuolo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 16:29:54 by iuolo             #+#    #+#             */
-/*   Updated: 2019/11/07 00:03:18 by iuolo            ###   ########.fr       */
+/*   Updated: 2019/11/10 08:16:42 by iuolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,15 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+
+typedef struct		s_transf
+{
+	char			*arr;
+	int 			i;
+	int 			k;
+	int				c;
+	int				j;
+}					t_transf;
 
 typedef struct		s_piece
 {
@@ -41,6 +50,6 @@ int		validit(int r, char *buff, int *hesh);
 int		corrfigit(int *hesh);
 int		*cntit(char *s, int **hesh);
 int     ft_solver(char **fill);
-t_piece	*ft_transfer_part(char **fl, int i, int c, t_piece *tetr);
+t_piece	*ft_transfer(char **fill);
 
 #endif

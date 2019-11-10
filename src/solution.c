@@ -6,15 +6,15 @@
 /*   By: iuolo <iuolo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 04:45:22 by iuolo             #+#    #+#             */
-/*   Updated: 2019/11/10 07:36:31 by iuolo            ###   ########.fr       */
+/*   Updated: 2019/11/10 07:44:41 by iuolo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fillit.h"
+#include "fillit.h"
 
 int		g_size;
 
-void	func(t_transf **tr, char **fill, t_piece **tetr, t_piece **tmp)
+static void	func(t_transf **tr, char **fill, t_piece **tetr, t_piece **tmp)
 {
 	if (!(*tr = (t_transf*)malloc(sizeof(t_transf))))
 		exit(0);
@@ -34,7 +34,7 @@ void	func(t_transf **tr, char **fill, t_piece **tetr, t_piece **tmp)
 	(*tr)->j = 0;
 }
 
-void	func2(t_transf **tr, t_piece **tetr, t_piece **tmp)
+static void	func2(t_transf **tr, t_piece **tetr, t_piece **tmp)
 {
 	while ((*tr)->j < (*tr)->c - 1)
 	{
@@ -51,7 +51,7 @@ void	func2(t_transf **tr, t_piece **tetr, t_piece **tmp)
 	(*tr)->c = 0;
 }
 
-void	func3(t_transf **tr, char ***fill, t_piece **tetr, t_piece **tmp)
+static void	func3(t_transf **tr, char ***fill, t_piece **tetr, t_piece **tmp)
 {
 	while (*tmp)
 	{
